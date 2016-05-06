@@ -1,0 +1,10 @@
+JarIndex-Version: 1.0
+
+org.eclipse.virgo.snaps.sample.animal-sources.jar
+WEB-INF
+images
+styles
+bottom.jsp
+index.jsp
+top.jsp
+
