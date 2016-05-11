@@ -1,0 +1,13 @@
+JarIndex-Version: 1.0
+
+org.eclipse.virgo.snaps.sample.cat-sources.jar
+WEB-INF
+images
+org
+org/eclipse
+org/eclipse/virgo
+org/eclipse/virgo/snaps
+org/eclipse/virgo/snaps/sample
+org/eclipse/virgo/snaps/sample/cat
+index.jsp
+
