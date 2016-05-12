@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CatController {
 	/**
-	 * ServletRequestµÄgetServletContext·½·¨ÊÇServlet3.0Ìí¼ÓµÄ
+	 * ServletRequestçš„getServletContextæ–¹æ³•æ˜¯Servlet3.0æ·»åŠ çš„
 	 * 
 	 * @param request
 	 * @return
