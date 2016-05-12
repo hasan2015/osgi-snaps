@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <project name="test6">
 	<target name="deploy">
-		<!--<mkdir dir="target/classes/WEB-INF/classes" />-->
+		<!--<mkdir dir="target/classes/WEB-INF/classes" />
+		<move todir="target/classes/WEB-INF/classes">
+			<fileset dir="target/classes" includes="*.*"/>
+		</move>-->
+		<copydir src="WebRoot" dest="target/classes">
+		</copydir>
 		<move todir="target/classes/WEB-INF/classes/org">
 			<fileset dir="target/classes/org" />
 		</move>
