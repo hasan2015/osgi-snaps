@@ -134,93 +134,77 @@
 	</pluginRepositories>
 	<build>
 		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.3</version>
-					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
-					<configuration>
-						<archive>
-							<manifestFile>
-								src/main/resources/META-INF/MANIFEST.MF
-							</manifestFile>
-						</archive>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.12</version>
-					<configuration>
-						<includes>
-							<include>**/*Tests.java</include>
-						</includes>
-						<excludes>
-							<exclude>**/Abstract*.java</exclude>
-						</excludes>
-						<junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>1.8</version>
-
-					<executions>
-						<execution>
-							<id>ant-release</id>
-							<phase>generate-sources</phase>
-							<goals>
-								<goal>run</goal>
-							</goals>
-							<configuration>
-								<target>
-									<delete dir="${classes.dir}" /> 
-									<copydir
-										src="${target.dir}"
-										dest="${classes.dir}" forceoverwrite="true" />
- 
-								</target>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.5</version>
-					<executions>
-						<execution>
-							<id>copy-resources</id>
-							<phase>validate</phase>
-							<goals>
-								<goal>copy-resources</goal>
-							</goals>
-							<configuration>
-								<outputDirectory>target/classes/WEB-INF/classes/</outputDirectory>
-								<resources>
-									<resource>
-										<directory>target/classes/</directory>
-										<includes>
-											<include>org/**</include>
-										</includes>
-										<filtering>true</filtering>
-									</resource>
-								</resources>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
+			<plugins></plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifestFile>
+							src/main/resources/META-INF/MANIFEST.MF
+						</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>				
+						<skipTests>true</skipTests>
+					<includes>
+						<include>**/*Tests.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/Abstract*.java</exclude>
+					</excludes>
+					<junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<property name="compile_classpath" refid="maven.compile.classpath" />
+								<property name="runtime_classpath" refid="maven.runtime.classpath" />
+								<property name="test_classpath" refid="maven.test.classpath" />
+								<property name="plugin_classpath" refid="maven.plugin.classpath" />
+
+								<ant antfile="${basedir}/build.xml">
+									<target name="deploy" />
+								</ant>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- <plugin> <artifactId>maven-resources-plugin</artifactId> <version>2.5</version> 
+				<executions> <execution> <id>copy-resources</id> <phase>validate</phase> 
+				<goals> <goal>copy-resources</goal> </goals> <configuration> <outputDirectory>target/classes/WEB-INF/classes/</outputDirectory> 
+				<resources> <resource> <directory>target/classes/</directory> <includes> 
+				<include>org/**</include> </includes> <filtering>true</filtering> </resource> 
+				</resources> </configuration> </execution> </executions> </plugin> -->
+		</plugins>
 	</build>
 </project>

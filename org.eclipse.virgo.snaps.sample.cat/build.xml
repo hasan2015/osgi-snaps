@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<project name="test6">
+	<target name="deploy">
+		<!--<mkdir dir="target/classes/WEB-INF/classes" />-->
+		<move todir="target/classes/WEB-INF/classes/org">
+			<fileset dir="target/classes/org" />
+		</move>
+	</target>
+	<target name="test">
+		<echo message="compile classpath: ${compile_classpath}" />
+		<echo message="runtime classpath: ${runtime_classpath}" />
+		<echo message="test classpath:    ${test_classpath}" />
+		<echo message="plugin classpath:  ${plugin_classpath}" />
+	</target>
+
+</project>
